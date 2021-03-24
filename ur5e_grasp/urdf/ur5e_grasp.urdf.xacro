@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur5e" >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_e_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5e -->
+  <xacro:include filename="$(find ur_e_description)/urdf/ur5e.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur5e_robot prefix="" joint_limited="false"/>
+
+  <!-- robotiq 85 -->
+  <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
+
+  <!-- gripper -->
+  <xacro:robotiq_85_gripper prefix="" parent="ee_link" >
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:robotiq_85_gripper>
+
+  <!-- kinect -->
+  <!-- <xacro:include filename="$(find ur5e_grasp)/urdf/kinect.urdf.xacro" />
+
+  <xacro:kinect name="camera" parent="world" >
+    <origin xyz="0.6 0.0 1.8" rpy="0.0 ${pi/2} 0.0" />
+  </xacro:kinect> -->
+
+  <!-- kinect2 -->
+  <!-- <xacro:include filename="$(find ur5e_grasp)/urdf/common.xacro" />
+  <xacro:include filename="$(find ur5e_grasp)/urdf/kinect2.urdf.xacro" />
+
+  <xacro:kinect2_v0 name="camera" parent="world" >
+    <origin xyz="0.4 0.0 1.2" rpy="0.0 ${pi/2} 0.0" />
+  </xacro:kinect2_v0> -->
+
+  <!-- kinect_v2 -->
+  <xacro:include filename="$(find kinect_v2)/urdf/kinect_v2.urdf.xacro" />
+    <xacro:kinect_v2  parent="world">
+        <origin xyz="0.6 0 1.00"
+                rpy="0 1.57 0" />
+  </xacro:kinect_v2>
+
+  <link name="world"/> 
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <xacro:include filename="$(find ur5e_grasp)/urdf/gzplugin_grasp_fix.urdf.xacro"/>
+  <xacro:gzplugin_grasp_fix/>
+
+</robot>
