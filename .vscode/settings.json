@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "/home/chenthree/anaconda3/envs/pytorch-1.6/bin/python",
+    "python.autoComplete.extraPaths": [
+        "/home/chenthree/catkin_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages"
+    ]
+}
